@@ -1,6 +1,6 @@
 # IKea-clone
-Baby Gupta --> 
-Pritam Borole-->
-Rajat -->
-Rasika Gujar-->
-PriyaDarshan -->
+Baby Gupta --> Home Page & Product Details
+Pritam Borole--> Product Page 
+Rajat --> Login Signup
+Rasika Gujar--> Cart Page
+PriyaDarshan --> Payment
