@@ -10,5 +10,8 @@ let combinedReducers = combineReducers({
 
 let store = createStore(combinedReducers,applyMiddleware(thunk))
 
+store.subscribe(()=>{
+    console.log(store.getState())
+})
 
 export {store}
