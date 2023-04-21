@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Flex, Text, Select, Switch, useDisclosure,Drawer,DrawerOverlay,DrawerContent,DrawerCloseButton,DrawerHeader,DrawerBody,DrawerFooter, Grid, Img, Heading } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, Flex, Text, Select, Switch, useDisclosure,Drawer,DrawerOverlay,DrawerContent,DrawerCloseButton,DrawerHeader,DrawerBody,DrawerFooter, Grid, Img, Heading, useControllableState } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import { addToCart, addToLoved } from '../../redux/products/actions';
@@ -6,8 +6,16 @@ import { addToCart, addToLoved } from '../../redux/products/actions';
 function ProductsGrid(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     let dispatch = useDispatch()
-    let products = useSelector((state)=>{return state.productsReducer.products})
-    console.log(products)
+    let [filters,setFilters] = useControllableState({
+        defaultValue:{ 
+        sort:"",
+        category:"",
+        price:""
+    }
+    })
+    let storeProducts = useSelector((state)=>{return state.productsReducer.products})
+    let [products,setProducts] = useState(storeProducts)
+
 
     const btnRef = React.useRef()
     let [border,setBorder] = useState(false)
@@ -70,14 +78,14 @@ function ProductsGrid(props) {
 
           <DrawerBody>
             <Flex flexDirection={"column"} gap='20px' mt='60px'>
-            <Select placeholder='Sort' >
+            <Select value={filters.sort} placeholder='Sort' >
                     <option value={"best"} >Best match</option>
-                    <option value={"h2l"}>Price: low to high</option>
-                    <option value={"l2h"}>Price: high to low</option>
+                    <option value={"l2h"}>Price: low to high</option>
+                    <option value={"h2l"}>Price: high to low</option>
                     <option value={"rating"}>Customer rating</option>
                     <option value={"name"}>Name</option>
             </Select>
-            <Select placeholder='Category'>
+            <Select value={filters.category} placeholder='Category'>
                     <option value={"app"}>Accessories for appliances</option>
                     <option value={"hoods"}>Extractor hoods & filters</option>
                     <option value={"hobs"}>Hobs</option>
