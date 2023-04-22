@@ -9,6 +9,7 @@ function Router() {
         <Routes>
             <Route path="/" element={<Products />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/product/:id" element={<Products />} />
             <Route path='/payment' element={<PrivateRoute><Products /></PrivateRoute>} />
             <Route path="*" element={<NotFound />} />
         </Routes>

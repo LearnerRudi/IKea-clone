@@ -2,8 +2,10 @@ import { Box, Button, ButtonGroup, Flex, Text, Select, Switch, useDisclosure,Dra
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import { addToCart, addToLoved } from '../../redux/products/actions';
+import {useNavigate} from "react-router-dom"
 
 function ProductsGrid(props) {
+    let navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
     let dispatch = useDispatch()
     let [filters,setFilters] = useControllableState({
@@ -15,6 +17,7 @@ function ProductsGrid(props) {
     })
     let storeProducts = useSelector((state)=>{return state.productsReducer.products})
     let [products,setProducts] = useState(storeProducts)
+    console.log(products)
 
 
     const btnRef = React.useRef()
@@ -35,20 +38,119 @@ function ProductsGrid(props) {
             </Flex>
             <Flex alignItems={"center"} justifyContent={"space-between"} mt='20px' overflow={"auto"} gap={20} >
                 <Flex>
-                <Select variant='filled' borderRadius={25} mr={5}  fontWeight={"semibold"} w={120} placeholder='Sort' >
+                <Select variant='filled' value={filters.sort} onChange={(e)=>{
+                    setFilters({...filters,sort:e.target.value})
+                    if(e.target.value==="l2h"){
+                        let tempProducts = products.sort((a,b)=>{
+                            return a.price - b.price
+                        })
+                        setProducts(tempProducts)
+                    }else if(e.target.value==="h2l"){
+                        let tempProducts = products.sort((a,b)=>{
+                            return b.price - a.price
+                        })
+                        setProducts(tempProducts)
+                    }else if(e.target.value==="best"){
+                        setProducts(storeProducts)
+                    }else if(e.target.value==="name"){
+                        let tempProducts = products.sort((a,b)=>{
+                            if (a.brand < b.brand) {
+                                return -1;
+                              }
+                              if (a.brand > b.brand) {
+                                return 1;
+                              }
+                              return 0;
+                        })
+                        setProducts(tempProducts)
+                    }else if(e.target.value==="rating"){
+                        let tempProducts = products.sort((a,b)=>{
+                            return b.rating - a.rating
+                        })
+                        setProducts(tempProducts)
+                    }
+                }} borderRadius={25} mr={5}  fontWeight={"semibold"} w={120} placeholder='Sort' >
                 <option value={"best"} >Best match</option>
-                    <option value={"h2l"}>Price: low to high</option>
-                    <option value={"l2h"}>Price: high to low</option>
+                    <option value={"l2h"}>Price: low to high</option>
+                    <option value={"h2l"}>Price: high to low</option>
                     <option value={"rating"}>Customer rating</option>
                     <option value={"name"}>Name</option>
                 </Select>
-                <Select variant='filled' borderRadius={25} mr={5}  fontWeight={"semibold"} w={120} placeholder='Category'>
+                <Select variant='filled' value={filters.category} onChange={(e)=>{
+                    setFilters({...filters,category:e.target.value})
+                    switch (e.target.value) {
+                        case "hoods":
+                            let hoodProducts = storeProducts.filter((elem)=>{
+                                return elem.name.includes("hood")
+                            })
+                            setProducts(hoodProducts)
+                            break;
+                        case "oven":
+                            let ovenProducts = storeProducts.filter((elem)=>{
+                                return elem.name.includes("oven")
+                            })
+                            setProducts(ovenProducts)
+                            break;
+                        case "hobs":
+                            let hobProducts = storeProducts.filter((elem)=>{
+                                return elem.name.includes("hob")
+                            })
+                            setProducts(hobProducts)
+                            break;
+                        case "app":
+                            let appProducts = storeProducts.filter((elem)=>{
+                                return elem.name.includes("appliance")
+                            })
+                            setProducts(appProducts)
+                            break;
+                        default:
+                            setProducts(storeProducts)
+                            break;
+                    }
+                }} borderRadius={25} mr={5}  fontWeight={"semibold"} w={120} placeholder='Category'>
                 <option value={"app"}>Accessories for appliances</option>
                     <option value={"hoods"}>Extractor hoods & filters</option>
                     <option value={"hobs"}>Hobs</option>
                     <option value={"oven"}>Ovens</option>
                 </Select>
-                <Select variant='filled' borderRadius={25} mr={5}  fontWeight={"semibold"} w={120} placeholder='Price' >
+                <Select variant='filled' onChange={(e)=>{
+                    setFilters({...filters,price:e.target.value})
+                    switch (e.target.value) {
+                        case "5000":
+                            let filter1 = storeProducts.filter((elem)=>{
+                                return elem.price < 5000
+                            })
+                            setProducts(filter1)
+                            break;
+                        case "10000":
+                            let filter2 = storeProducts.filter((elem)=>{
+                                return elem.price >= 5000 && elem.price < 10000
+                            })
+                            setProducts(filter2)
+                            break;
+                        case "15000":
+                            let filter3 = storeProducts.filter((elem)=>{
+                                return elem.price >= 10000 && elem.price < 15000
+                            })
+                            setProducts(filter3)
+                            break;
+                        case "20000":
+                            let filter4 = storeProducts.filter((elem)=>{
+                                return elem.price >= 15000 && elem.price < 20000
+                            })
+                            setProducts(filter4)
+                            break;
+                        case "20000+":
+                            let filter5 = storeProducts.filter((elem)=>{
+                                return elem.price > 20000
+                            })
+                            setProducts(filter5)
+                            break;
+                        default:
+                            setProducts(storeProducts)
+                            break;
+                    }
+                }} value={filters.price} borderRadius={25} mr={5}  fontWeight={"semibold"} w={120} placeholder='Price' >
                 <option value={"5000"}>₹0-4,999</option>
                     <option value={"10000"}>₹5,000 - 9,999</option>
                     <option value={"15000"}>₹10,000 - 14,999</option>
@@ -78,20 +180,26 @@ function ProductsGrid(props) {
 
           <DrawerBody>
             <Flex flexDirection={"column"} gap='20px' mt='60px'>
-            <Select value={filters.sort} placeholder='Sort' >
+            <Select value={filters.sort} onChange={(e)=>{
+                    setFilters({...filters,sort:e.target.value})
+                }} placeholder='Sort' >
                     <option value={"best"} >Best match</option>
                     <option value={"l2h"}>Price: low to high</option>
                     <option value={"h2l"}>Price: high to low</option>
                     <option value={"rating"}>Customer rating</option>
                     <option value={"name"}>Name</option>
             </Select>
-            <Select value={filters.category} placeholder='Category'>
+            <Select value={filters.category}  onChange={(e)=>{
+                    setFilters({...filters,category:e.target.value})
+                }} placeholder='Category'>
                     <option value={"app"}>Accessories for appliances</option>
                     <option value={"hoods"}>Extractor hoods & filters</option>
                     <option value={"hobs"}>Hobs</option>
                     <option value={"oven"}>Ovens</option>
             </Select>
-            <Select placeholder='Price' >
+            <Select placeholder='Price' onChange={(e)=>{
+                    setFilters({...filters,price:e.target.value})
+                }} value={filters.price} >
                     <option value={"5000"}>₹0-4,999</option>
                     <option value={"10000"}>₹5,000 - 9,999</option>
                     <option value={"15000"}>₹10,000 - 14,999</option>
@@ -102,7 +210,105 @@ function ProductsGrid(props) {
             
           </DrawerBody>
                     <Flex justifyContent={"space-evenly"}>
-                    <Button paddingY='30px' w={"40%"} borderRadius={30} backgroundColor={"black"} color='white' _hover={{"backgroundColor":"gray.700"}} mr={3} onClick={onClose}>
+                    <Button paddingY='30px' w={"40%"} borderRadius={30} backgroundColor={"black"} color='white' _hover={{"backgroundColor":"gray.700"}} mr={3} onClick={()=>{
+                        onClose()
+                        // Sort
+                        if(filters.sort==="l2h"){
+                            let tempProducts = products.sort((a,b)=>{
+                                return a.price - b.price
+                            })
+                            setProducts(tempProducts)
+                        }else if(filters.sort==="h2l"){
+                            let tempProducts = products.sort((a,b)=>{
+                                return b.price - a.price
+                            })
+                            setProducts(tempProducts)
+                        }else if(filters.sort==="best"){
+                            setProducts(storeProducts)
+                        }else if(filters.sort==="name"){
+                            let tempProducts = products.sort((a,b)=>{
+                                if (a.brand < b.brand) {
+                                    return -1;
+                                  }
+                                  if (a.brand > b.brand) {
+                                    return 1;
+                                  }
+                                  return 0;
+                            })
+                            setProducts(tempProducts)
+                        }else if(filters.sort==="rating"){
+                            let tempProducts = products.sort((a,b)=>{
+                                return b.rating - a.rating
+                            })
+                            setProducts(tempProducts)
+                        }
+                        //category
+                        switch (filters.category) {
+                            case "hoods":
+                                let hoodProducts = storeProducts.filter((elem)=>{
+                                    return elem.name.includes("hood")
+                                })
+                                setProducts(hoodProducts)
+                                break;
+                            case "oven":
+                                let ovenProducts = storeProducts.filter((elem)=>{
+                                    return elem.name.includes("oven")
+                                })
+                                setProducts(ovenProducts)
+                                break;
+                            case "hobs":
+                                let hobProducts = storeProducts.filter((elem)=>{
+                                    return elem.name.includes("hob")
+                                })
+                                setProducts(hobProducts)
+                                break;
+                            case "app":
+                                let appProducts = storeProducts.filter((elem)=>{
+                                    return elem.name.includes("appliance")
+                                })
+                                setProducts(appProducts)
+                                break;
+                            default:
+                                setProducts(storeProducts)
+                                break;
+                        }
+                        //price
+                        switch (filters.price) {
+                            case "5000":
+                                let filter1 = storeProducts.filter((elem)=>{
+                                    return elem.price < 5000
+                                })
+                                setProducts(filter1)
+                                break;
+                            case "10000":
+                                let filter2 = storeProducts.filter((elem)=>{
+                                    return elem.price >= 5000 && elem.price < 10000
+                                })
+                                setProducts(filter2)
+                                break;
+                            case "15000":
+                                let filter3 = storeProducts.filter((elem)=>{
+                                    return elem.price >= 10000 && elem.price < 15000
+                                })
+                                setProducts(filter3)
+                                break;
+                            case "20000":
+                                let filter4 = storeProducts.filter((elem)=>{
+                                    return elem.price >= 15000 && elem.price < 20000
+                                })
+                                setProducts(filter4)
+                                break;
+                            case "20000+":
+                                let filter5 = storeProducts.filter((elem)=>{
+                                    return elem.price > 20000
+                                })
+                                setProducts(filter5)
+                                break;
+                            default:
+                                setProducts(storeProducts)
+                                break;
+                        }
+                    }}>
               View
             </Button>
             <Button paddingY='30px' borderRadius={30} w={"40%"} color='gray.500' colorScheme='gray'>Clear all</Button>
@@ -117,7 +323,9 @@ function ProductsGrid(props) {
       <Grid gridTemplateColumns={"repeat(4,1fr)"}>
             {
                 products.map((elem)=>{
-                    return <Flex p={5} cursor={"pointer"} flexDirection={"column"}>
+                    return <Flex p={5} cursor={"pointer"} onClick={()=>{
+                        navigate(`/product/${elem.id}`)
+                    }} flexDirection={"column"}>
                         <Img  src={border ? elem.hoverThumb : elem.thumb} />
                         <Heading mt={10} fontSize={15}>{elem.brand}</Heading>
                         <p>{elem.name}</p>
