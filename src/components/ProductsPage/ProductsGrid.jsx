@@ -6,7 +6,7 @@ import {useNavigate,Link} from "react-router-dom"
 
 function ProductsGrid(props) {
     const cartToast = useToast()
-    const lovedToast = useToast()
+    const lovedToast =useToast()
     const { isOpen, onOpen, onClose } = useDisclosure()
     let dispatch = useDispatch()
     let [filters,setFilters] = useControllableState({
