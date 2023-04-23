@@ -37,6 +37,78 @@ const initialState = {
         "reviews":0,
         "thumb":"https://www.ikea.com/in/en/images/products/lagan-integrated-dishwasher__0854669_pe780720_s5.jpg?f=xxs",
         "hoverThumb":"https://www.ikea.com/in/en/images/products/lagan-integrated-dishwasher__0854673_pe780723_s5.jpg?f=xxs"
+    },{
+        "id":5,
+        "brand":"FÖRBRÄNNA",
+        "name":"Gas hob",
+        "price":9990,
+        "rating":5,
+        "reviews":2,
+        "thumb":"https://www.ikea.com/in/en/images/products/foerbraenna-gas-hob-black__0781353_pe760702_s5.jpg?f=xxs",
+        "hoverThumb":"https://www.ikea.com/in/en/images/products/foerbraenna-gas-hob-black__0781352_pe760687_s5.jpg?f=xxs"
+    },{
+        "id":6,
+        "brand":"FÖRGYLLA",
+        "name":"Gas hob",
+        "price":21990,
+        "rating":5,
+        "reviews":1,
+        "thumb":"https://www.ikea.com/in/en/images/products/foergylla-gas-hob-black__0781363_pe760696_s5.jpg?f=xxs",
+        "hoverThumb":"https://www.ikea.com/in/en/images/products/foergylla-gas-hob-black__0781362_pe760695_s5.jpg?f=xxs"
+    },{
+        "id":7,
+        "brand":"LAGAN",
+        "name":"Gas hob",
+        "price":4290,
+        "rating":5,
+        "reviews":1,
+        "thumb":"https://www.ikea.com/in/en/images/products/lagan-gas-hob-black__0781369_pe760700_s5.jpg?f=xxs",
+        "hoverThumb":"https://www.ikea.com/in/en/images/products/lagan-gas-hob-black__0781372_pe760688_s5.jpg?f=xxs"
+    },{
+        "id":8,
+        "brand":"NYTTIG",
+        "name":"Hob separator for drawer",
+        "price":1300,
+        "rating":0,
+        "reviews":0,
+        "thumb":"https://www.ikea.com/in/en/images/products/nyttig-hob-separator-for-drawer-white__0755142_pe748278_s5.jpg?f=xxs",
+        "hoverThumb":"https://www.ikea.com/in/en/images/products/nyttig-hob-separator-for-drawer-white__0755142_pe748278_s5.jpg?f=xxs"
+    },{
+        "id":9,
+        "brand":"MATÄLSKARE",
+        "name":"Forced air oven",
+        "price":33990,
+        "rating":0,
+        "reviews":0,
+        "thumb":"https://www.ikea.com/in/en/images/products/mataelskare-forced-air-oven-stainless-steel__0754910_pe748167_s5.jpg?f=xxs",
+        "hoverThumb":"https://www.ikea.com/in/en/images/products/mataelskare-forced-air-oven-stainless-steel__0869528_pe670391_s5.jpg?f=xxs"
+    },{
+        "id":10,
+        "brand":"NYTTIG TUB 125",
+        "name":"Flexible pipe for fan",
+        "price":1800,
+        "rating":0,
+        "reviews":0,
+        "thumb":"https://www.ikea.com/in/en/images/products/nyttig-tub-125-flexible-pipe-for-fan__0755146_pe748282_s5.jpg?f=xxs",
+        "hoverThumb":"https://www.ikea.com/in/en/images/products/nyttig-tub-125-flexible-pipe-for-fan__0755146_pe748282_s5.jpg?f=xxs"
+    },{
+        "id":11,
+        "brand":"UTRUSTA",
+        "name":"Bracket for oven",
+        "price":1600,
+        "rating":4,
+        "reviews":7,
+        "thumb":"https://www.ikea.com/in/en/images/products/utrusta-bracket-for-oven-galvanised__0755148_pe748284_s5.jpg?f=xxs",
+        "hoverThumb":"https://www.ikea.com/in/en/images/products/utrusta-bracket-for-oven-galvanised__0755148_pe748284_s5.jpg?f=xxs"
+    },{
+        "id":12,
+        "brand":"FÖRDJUPA",
+        "name":"Gas hob",
+        "price":14990,
+        "rating":1,
+        "reviews":1,
+        "thumb":"https://www.ikea.com/in/en/images/products/foerdjupa-gas-hob-black-stainless-steel__0781358_pe760692_s5.jpg?f=xxs",
+        "hoverThumb":"https://www.ikea.com/in/en/images/products/foerdjupa-gas-hob-black-stainless-steel__0781357_pe760691_s5.jpg?f=xxs"
     }],
     loved:[],
     cart:[]
@@ -50,6 +122,15 @@ function productsReducer(state=initialState,action){
                 cart:[...state.cart,action.payload]
             }
         case "ADD_TO_LOVED":
+            if(state.loved.some(e => e.id === action.payload.id)){
+                let removeLoved = state.loved.filter((elem)=>{
+                    return elem.id != action.payload.id
+                })
+                return {
+                    ...state,
+                    loved:[...removeLoved]
+                }
+            }
             return {
                 ...state,
                 loved:[...state.loved,action.payload]
