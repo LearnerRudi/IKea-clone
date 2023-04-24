@@ -14,7 +14,7 @@ import {
   VStack,
   Divider
 } from '@chakra-ui/react';
-
+import { Link as LinkTo } from 'react-router-dom';
 import { RxCross2} from 'react-icons/rx'
 import { AiOutlineArrowLeft} from 'react-icons/ai'
  
@@ -114,7 +114,7 @@ const SubNavBar = () => {
               <Link>Home Textiles</Link>
               <Link>Decoration</Link>
               <Link>Lighting</Link>
-              <Link href='/products'>Kitchen & appliances</Link>
+              <LinkTo to='/products'>Kitchen & appliances</LinkTo>
               <Link>Smart Home</Link>
               <Link>Beds & mattresses</Link>
               <Link>Baby & children</Link>

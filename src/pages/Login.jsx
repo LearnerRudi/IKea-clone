@@ -32,7 +32,8 @@ const Login = () => {
         setOtp(e.target.value);
       };
 
-      const handleSubmit = () => {
+      const handleSubmit = (e) => {
+        e.preventDefault()
         let arr=authData.filter((e)=>{
           return (emailOrMobile === e.email && otp===e.password )
         })
@@ -41,7 +42,7 @@ const Login = () => {
         navigate("/")
         toast({
           title: 'Logged In',
-          description: `Welocme ${arr[0].name}`,
+          description: `Welcome ${arr[0].name}`,
           status: 'success',
           duration: 9000,
           isClosable: true,
@@ -99,22 +100,17 @@ const Login = () => {
 <Box w="60%" ml={36}>
   <VStack spacing={4} align={"center"}>
     
-  <Heading textAlign="left">Email or Verified Mobile Number</Heading>
+  <Text textAlign="left">Email or Verified Mobile Number</Text>
         <FormLabel htmlFor="otp" fontSize="lg" textAlign="left">
           Login with an OTP
         </FormLabel>
-        <Input type="text" id="otp" value={emailOrMobile} onChange={handleEmailOrMobileChange} />
+        <Input type="text" id="otp" value={emailOrMobile} onChange={handleEmailOrMobileChange} maxWidth={"90%"}/>
         <FormLabel htmlFor="password" fontSize="lg" textAlign="left">
           Password
         </FormLabel>
-        <InputGroup size="md">
-          <Input pr="4.5rem" type="password" id="password" value={otp} onChange={handleOtpChange} />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm">
-              Show
-            </Button>
-          </InputRightElement>
-        </InputGroup>
+        
+          <Input  type="password" id="password" value={otp} onChange={handleOtpChange} maxWidth={"90%"}/>
+          
         {/* Continue button */}
         <Button bg={"#0058A3"} size="lg" w={"70%"} fontSize="sm" borderRadius="full" p={6} onClick={handleSubmit}>
           Continue

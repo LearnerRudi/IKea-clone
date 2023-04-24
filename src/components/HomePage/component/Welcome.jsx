@@ -1,12 +1,16 @@
 import React from "react";
 import { Box, Text, Link } from "@chakra-ui/react";
-
+import { useSelector } from "react-redux";
 
 const Welcome = () => {
+  const user=useSelector((state)=>{
+    return state.authReducer;
+  })
+  console.log(user)
   return (
     <Box textAlign="left" ml={92}>
       <Text fontSize="4xl" fontWeight="bold">
-        Hej!
+      {user.isAuth? user.users[0].name:"Hej!"}
       </Text>
       <Text fontSize="sm" mt={2} mb={4}>
         This is how we say "hello" in Swedish

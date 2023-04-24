@@ -1,0 +1,512 @@
+/* .coupan-code{
+    margin-top: 5% !important;
+    margin-left: 15% !important;
+}
+
+.checkout-page{
+    margin-top: 8% !important;
+    display: flex !important;
+    width: 100% !important;
+    justify-content: space-around !important;
+}
+
+.input
+{
+    display: flex !important;
+    margin: 2px !important;
+}
+.input-data{
+    margin: 4px !important;
+}
+.input-btn{
+    border-radius: 10px !important;
+}
+
+.total-amount h3{
+    padding-bottom: -20px !important;
+}
+.total-amount p{
+   margin-bottom: -1% !important;
+}
+.amount{
+
+    display: flex !important;
+   align-items: center !important;
+   justify-content: space-between !important;
+}
+.allData{
+    display: flex !important;
+    justify-content: space-between !important;
+}
+.cards {
+    display: flex !important;
+}
+.cards img{
+    display: flex !important;
+    height: 50px !important;
+    width: 50px !important;
+    margin: 10px !important;
+
+}
+.cards li{
+    list-style: none !important;
+    display: flex !important;
+}
+
+.footercart{
+    border: 1px solid black !important;
+    width: 25% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    text-align: left !important;
+    align-items: center !important;
+    margin-left: 30px !important;
+    padding: 30px !important;
+    
+    
+} */
+
+
+body {
+  font-family: Roboto, Arial, Helvetica, sans-serif ;
+}
+
+@media screen and (max-width: 600px) {
+  #paymain {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .custdetail {
+    width: 90% !important;
+  }
+
+  .coupondiv {
+    width: 100% !important;
+  }
+
+  .cdtails {
+    display: flex !important;
+    width: 90% !important;
+    margin-top: 20px !important;
+    /* box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px !important; */
+    flex-direction: column !important;
+    padding: 20px !important;
+  }
+
+  .cards1 {
+    display: contents !important;
+    width: 100% !important;
+  }
+
+  .orderval {
+    display: contents !important;
+  }
+}
+
+.header>img {
+  width: 230px !important;
+  margin-bottom: 20px !important;
+}
+
+.header {
+  margin-bottom: 100px !important;
+  padding: 5px 10px !important;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px !important; */
+}
+
+.header>a {
+  position: absolute !important;
+  right: 10px !important;
+  width: 32% !important;
+  margin-top: 10px !important;
+  text-align: right !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  color: darkslategray !important;
+}
+
+.formhead {
+  margin: auto !important;
+  max-width: 70rem !important;
+  margin-right: 25% !important;
+  margin-left: 15% !important;
+}
+
+h1 {
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  line-height: 1em !important;
+  margin: 0.625rem 0 !important;
+}
+
+.processbar {
+  display: flex !important;
+}
+
+.prc1 {
+  border-radius: 7px 0 0 7px !important;
+  color: #414467 !important;
+  background-color: aliceblue !important;
+  width: 98px !important;
+  height: 48px !important;
+  margin-right: 5px !important;
+  border-top-right-radius: 30px !important;
+  border-end-end-radius: 30px !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+.prc2 {
+  border-radius: 7px 0 0 7px !important;
+  color: aliceblue !important;
+  background-color: #414467 !important;
+  width: 240px !important;
+  height: 48px !important;
+  margin-right: 5px !important;
+  border-top-right-radius: 30px !important;
+  border-end-end-radius: 30px !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  padding-top: 8px !important;
+}
+
+.form1 {
+  margin: auto !important;
+  max-width: 75rem !important;
+}
+
+.details {
+  margin: auto !important;
+  max-width: 75rem !important;
+}
+
+label {
+  display: block !important;
+  width: 35% !important;
+  margin-top: 20px !important;
+}
+
+.labelname {
+  float: left !important;
+  margin-top: 20px !important;
+}
+
+input {
+  margin-top: 5px !important;
+  width: 150% !important;
+  height: 40px !important;
+}
+
+.labellast {
+  float: right !important;
+}
+
+h3 {
+  margin-top: 50px !important;
+}
+
+.checkbox {
+  height: 20px !important;
+  width: 20px !important;
+}
+
+.agree {
+
+  width: 100% !important;
+}
+
+.pass {
+  margin-bottom: 110px !important;
+}
+
+#footer {
+  border: 2px solid black !important;
+  border-left: 2px solid white !important;
+  border-right: 2px solid white !important;
+  border-bottom: 7px solid black !important;
+  background-color: #f0f1f7 !important;
+  height: 120px !important;
+}
+
+.digimg {
+  float: right !important;
+  height: 85px !important;
+}
+
+.lastline {
+  margin-bottom: 150px !important;
+}
+
+#prcd {
+  width: 526px !important;
+  height: 51px !important;
+  border-radius: 50px !important;
+  background-color: #414467 !important;
+  color: #f0f1f7 !important;
+  font-weight: 700 !important;
+  font-size: 1.15rem !important;
+}
+
+#prcd:hover {
+  background-color: #1c1d29 !important;
+  cursor: pointer !important;
+}
+
+.cards1 {
+  margin: auto !important;
+  width: 36% !important;
+  margin-left: 15% !important;
+}
+
+.paycard {
+  margin-bottom: 10px !important;
+  border: 2px solid #a1a3b0 !important;
+  display: flex !important;
+  font-size: large !important;
+  height: 80px !important;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important; */
+  border-top-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+}
+
+.bitpay {
+  margin-bottom: 10px !important;
+  border: 2px solid #a1a3b0 !important;
+  display: flex !important;
+  font-size: large !important;
+  height: 80px !important;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important; */
+  border-top-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+}
+
+#cardradio {
+  width: 20px !important;
+  height: 50px !important;
+
+
+}
+
+.sezzle {
+  margin-bottom: 10px !important;
+  padding: 9px !important;
+  padding-left: 50px !important;
+  border: 2px solid #a1a3b0 !important;
+  display: flex !important;
+  font-size: large !important;
+  height: 90px !important;
+  border-top-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important; */
+}
+
+.paypal {
+  margin-bottom: 10px !important;
+  padding: 9px !important;
+  padding-left: 50px !important;
+  border: 2px solid #a1a3b0 !important;
+  display: flex !important;
+  font-size: large !important;
+  height: 90px !important;
+  border-top-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important; */
+}
+
+.paycredit {
+  margin-bottom: 10px !important;
+  padding: 9px !important;
+  padding-left: 50px !important;
+  border: 2px solid #a1a3b0 !important;
+  display: flex !important;
+  font-size: large !important;
+  height: 90px !important;
+  border-top-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important; */
+}
+
+.mastervisa {
+  margin-bottom: 10px !important;
+  padding: 10px !important;
+  padding-left: 50px !important;
+  /* border: 2px solid #a1a3b0 !important; */
+  display: flex !important;
+  font-size: large !important;
+  height: 60px !important;
+  border-top-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important; */
+}
+
+.custdetail {
+  background-color: #f0f1f7 !important;
+  padding: 10px !important;
+  width: 50% !important;
+}
+
+.custdetail>p {
+  font-size: 22px !important;
+}
+
+.custname {
+  font-weight: 700 !important;
+}
+
+.cdtails {
+  display: flex !important;
+  margin: auto !important;
+  margin-top: 20px !important;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important; */
+}
+
+.coupondiv {
+  margin-left: 10px !important;
+}
+
+.couponbox {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+}
+
+.aplbtn {
+  background-color: #ffffff !important;
+  font-size: larger !important;
+  font-weight: 700 !important;
+  width: 25% !important;
+  height: 40px !important;
+  border-radius: 50px !important;
+}
+
+.aplbtn:hover {
+  background-color: #1c1d29 !important;
+  cursor: pointer !important;
+  color: #f0f1f7 !important;
+}
+
+.orderval {
+  width: 25% !important;
+  padding: 5px !important;
+  height: max-content !important;
+  margin-right: 20% !important;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important; */
+}
+
+#paymain {
+  margin-bottom: 40px !important;
+  display: flex !important;
+}
+
+.left {
+  float: left !important;
+  position: absolute !important;
+  font-size: larger !important;
+  font-weight: 700 !important;
+}
+
+.right {
+  float: right !important;
+  margin: auto !important;
+  font-size: larger !important;
+  font-weight: 700 !important;
+}
+
+.totval {
+  float: right !important;
+  margin: auto !important;
+  font-size: larger !important;
+  font-weight: 700 !important;
+}
+
+#couponmsg {
+  color: red !important;
+  font-size: medium !important;
+  font-weight: 800 !important;
+}
+
+#copontrue {
+  float: left !important;
+  position: absolute !important;
+  font-size: larger !important;
+  font-weight: 700 !important;
+}
+
+#couponval {
+  float: right !important;
+  margin: auto !important;
+  font-size: larger !important;
+  font-weight: 700 !important;
+}
+
+.fintag {
+  margin-top: 0px !important;
+  float: left !important;
+  position: absolute !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+}
+
+.finval {
+  float: right !important;
+  margin: auto !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+}
+
+.green {
+  border: 5px solid #007d76 !important;
+  margin-top: 40px !important;
+}
+
+#checkbox {
+  width: 25px !important;
+  height: 25px !important;
+}
+
+#getmob {
+  font-size: x-large !important;
+  margin: auto !important;
+}
+
+.gettxt {
+  margin-top: 30px !important;
+  background-color: #f0f1f7 !important;
+  padding: 5px !important;
+}
+
+.alerttxt {
+  display: flex !important;
+  align-items: center !important;
+  font-size: larger !important;
+  font-weight: 600 !important;
+}
+
+.plcorder {
+  margin-top: 5% !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  margin-bottom: 5% !important;
+}
+
+#plcbtn {
+  background-color: #414467 !important;
+  color: #f0f1f7 !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  width: 250px !important;
+  height: 50px !important;
+  border-radius: 50px !important;
+  margin-right: 70px !important;
+}
+
+#plcbtn:hover {
+  background-color: #1c1d29 !important;
+  cursor: pointer !important;
+}
+
+.tnk {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}

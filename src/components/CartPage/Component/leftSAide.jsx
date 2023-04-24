@@ -10,14 +10,15 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import { ArrowForwardIcon} from "@chakra-ui/icons";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-export default function LeftSAide({total}) {
+export default function LeftSAide({ total }) {
   const data = useSelector((store) => {
     return store.productsReducer.cart;
   });
-
+  const navigate=useNavigate();
   const [size, setSize] = React.useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -55,12 +56,9 @@ export default function LeftSAide({total}) {
         </Box>
         <Spacer />
         <Box>
-          
-         
-              <div>
-                <Heading size="md"> Rs.{total} </Heading>
-              </div>
-       
+          <div>
+            <Heading size="md"> Rs.{total} </Heading>
+          </div>
         </Box>
       </Flex>
 
@@ -92,12 +90,11 @@ export default function LeftSAide({total}) {
                 </Heading>
               </DrawerHeader>
               <DrawerBody>
-                <Button padding="70px 170px" mb={12}>
+                <Button padding="70px 170px" mb={12}  onClick={()=>{navigate('/payment')}}>
                   {" "}
                   Delivery
                 </Button>
-
-                <Button padding="70px 175px">Collect</Button>
+                <Button padding="70px 175px" onClick={()=>{navigate('/payment')}}>Collect</Button>
               </DrawerBody>
             </DrawerContent>
           </Drawer>
@@ -105,14 +102,14 @@ export default function LeftSAide({total}) {
       </>
 
       <Heading size="sm" marginTop="40px">
-        <Text marginLeft="-270px" as={"u"} color="#484848">
+        {/* <Text marginLeft="-270px" as={"u"} color="#484848">
           Our Return Policy
-        </Text>
+        </Text> */}
       </Heading>
       <Heading size="sm" marginTop="40px">
-        <Text marginLeft="-90px" as={"u"} color="#484848">
+        {/* <Text marginLeft="-90px" as={"u"} color="#484848">
           Secure shopping with SSL data encryption
-        </Text>
+        </Text> */}
       </Heading>
     </div>
   );

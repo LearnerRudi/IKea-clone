@@ -1,8 +1,9 @@
 
 
-function addToCart(item){
+function addToCart(item,quantity=1){
     return (dispath,state)=>{
-        item.quantity=1
+        item.quantity=quantity
+
         dispath({
             type:"ADD_TO_CART",
             payload:item
